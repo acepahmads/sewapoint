@@ -158,34 +158,26 @@
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full">
-  <div id="app-root" class="h-full w-full flex flex-col" style="max-width: 480px; margin: 0 auto; position: relative; overflow: hidden;">
-   <!-- Top Gradient Section -->
-   <div id="top-section" style="flex: 0 0 38%; position: relative; overflow: hidden; background-size: cover; background-position: center;">
-    <!-- Full-screen image --> <img src="https://i.imgur.com/cMRfYsd.png" alt="Brand Background" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;" onerror="console.error('Image failed to load:', this.src); this.style.background='#6b8afd';this.alt='Image unavailable';">
+  <div id="app-root" class="h-full w-full flex flex-col" style="max-width: 480px; margin: 0 auto; position: relative; overflow: hidden;"><!-- Top Gradient Section -->
+   <div id="top-section" style="flex: 0 0 38%; position: relative; overflow: hidden; background-size: cover; background-position: center;"><!-- Full-screen image --> <img src="https://i.imgur.com/cMRfYsd.png" alt="Brand Background" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;" onerror="console.error('Image failed to load:', this.src); this.style.background='#6b8afd';this.alt='Image unavailable';">
    </div><!-- Bottom Card Section -->
    <div style="flex: 1; background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%); position: relative; z-index: 2; overflow-y: auto; border-radius: 28px 28px 0 0; margin-top: -24px; box-shadow: 0 -8px 40px rgba(107,138,253,0.08); border: 3px solid #f0f4ff;">
-    <div style="padding: 28px 24px 32px;">
-     <!-- Tabs -->
-     <div style="display:flex;gap:4px;background:rgba(220, 230, 255, 0.4);border-radius:14px;padding:4px;margin-bottom:22px;">
-      <button class="toggle-tab active" id="tab-signin" onclick="switchTab('signin')">Sign In</button> <button class="toggle-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+    <div style="padding: 28px 24px 32px;"><!-- Tabs -->
+     <div style="display:flex;gap:4px;background:rgba(220, 230, 255, 0.4);border-radius:14px;padding:4px;margin-bottom:22px;"><button class="toggle-tab active" id="tab-signin" onclick="switchTab('signin')">Sign In</button> <button class="toggle-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
      </div>
      <h2 id="card-title" style="font-size:18px;font-weight:800;color:#0d47a1;margin:0 0 16px;letter-spacing:-0.3px;">Welcome back</h2>
-     <form id="auth-form" onsubmit="handleSubmit(event)">
-      <!-- Name (signup only) -->
-      <div id="name-field" class="input-wrap" style="margin-bottom:10px;display:none;">
-       <input type="text" class="input-field" placeholder="Nama Lengkap" id="input-name" autocomplete="name"> <span class="input-icon"><i data-lucide="user" style="width:16px;height:16px;"></i></span>
+     <form id="auth-form" onsubmit="handleSubmit(event)"><!-- Name (signup only) -->
+      <div id="name-field" class="input-wrap" style="margin-bottom:10px;display:none;"><input type="text" class="input-field" placeholder="Nama Lengkap" id="input-name" autocomplete="name"> <span class="input-icon"><i data-lucide="user" style="width:16px;height:16px;"></i></span>
       </div>
-      <div class="input-wrap" style="margin-bottom:10px;">
-       <input type="email" class="input-field" placeholder="Alamat Email" id="input-email" autocomplete="email"> <span class="input-icon"><i data-lucide="mail" style="width:16px;height:16px;"></i></span>
+      <div class="input-wrap" style="margin-bottom:10px;"><input type="email" class="input-field" placeholder="Alamat Email" id="input-email" autocomplete="email"> <span class="input-icon"><i data-lucide="mail" style="width:16px;height:16px;"></i></span>
       </div>
-      <div class="input-wrap" style="margin-bottom:10px;">
-       <input type="password" class="input-field" placeholder="Kata Sandi" id="input-password" autocomplete="new-password"> <span class="input-icon"><i data-lucide="lock" style="width:16px;height:16px;"></i></span> <button type="button" class="pw-toggle" onclick="togglePassword()"><i data-lucide="eye" id="pw-eye" style="width:16px;height:16px;"></i></button>
+      <div class="input-wrap" style="margin-bottom:10px;"><input type="password" class="input-field" placeholder="Kata Sandi" id="input-password" autocomplete="new-password"> <span class="input-icon"><i data-lucide="lock" style="width:16px;height:16px;"></i></span> <button type="button" class="pw-toggle" onclick="togglePassword()"><i data-lucide="eye" id="pw-eye" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div id="confirm-password-field" class="input-wrap" style="margin-bottom:10px;display:none;"><input type="password" class="input-field" placeholder="Konfirmasi Kata Sandi" id="input-confirm-password" autocomplete="new-password"> <span class="input-icon"><i data-lucide="lock" style="width:16px;height:16px;"></i></span> <button type="button" class="pw-toggle" onclick="toggleConfirmPassword()"><i data-lucide="eye" id="confirm-pw-eye" style="width:16px;height:16px;"></i></button>
       </div><!-- Checkbox (signup only) -->
-      <div id="terms-field" style="display:none;align-items:flex-start;gap:8px;margin-bottom:16px;">
-       <input type="checkbox" class="checkbox-custom" id="terms-check"> <label for="terms-check" style="font-size:12px;color:rgba(13, 71, 161, 0.8);line-height:1.4;cursor:pointer;">Saya setuju dengan <span style="color:#0d47a1;font-weight:600;">Syarat Layanan</span> dan <span style="color:#0d47a1;font-weight:600;">Kebijakan Privasi</span></label>
+      <div id="terms-field" style="display:none;align-items:flex-start;gap:8px;margin-bottom:16px;"><input type="checkbox" class="checkbox-custom" id="terms-check"> <label for="terms-check" style="font-size:12px;color:rgba(13, 71, 161, 0.8);line-height:1.4;cursor:pointer;">Saya setuju dengan <span style="color:#0d47a1;font-weight:600;">Syarat Layanan</span> dan <span style="color:#0d47a1;font-weight:600;">Kebijakan Privasi</span></label>
       </div><!-- Forgot (signin only) -->
-      <div id="forgot-field" style="display:block;text-align:right;margin-bottom:14px;" class="anim-slide-up">
-       <a href="#" onclick="event.preventDefault();showToast('Link reset telah dikirim!')" style="color:#0d47a1;font-size:12px;font-weight:600;text-decoration:none;">Lupa Kata Sandi?</a>
+      <div id="forgot-field" style="display:block;text-align:right;margin-bottom:14px;" class="anim-slide-up"><a href="#" onclick="event.preventDefault();showToast('Link reset telah dikirim!')" style="color:#0d47a1;font-size:12px;font-weight:600;text-decoration:none;">Lupa Kata Sandi?</a>
       </div><button type="submit" class="btn-primary" id="submit-btn">Masuk</button> <!-- Bottom link -->
       <p id="bottom-link" style="text-align:center;margin-top:16px;font-size:12px;color:rgba(13, 71, 161, 0.8);">Belum punya akun? <a href="#" onclick="event.preventDefault();switchTab('signup')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Daftar</a></p>
      </form>
@@ -207,6 +199,7 @@
     document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
     document.getElementById('tab-signin').classList.toggle('active', tab === 'signin');
     document.getElementById('name-field').style.display = tab === 'signup' ? 'block' : 'none';
+    document.getElementById('confirm-password-field').style.display = tab === 'signup' ? 'block' : 'none';
     document.getElementById('terms-field').style.display = tab === 'signup' ? 'flex' : 'none';
     document.getElementById('forgot-field').style.display = tab === 'signin' ? 'block' : 'none';
 
@@ -233,12 +226,27 @@
     lucide.createIcons();
   }
 
+  function toggleConfirmPassword() {
+    const inp = document.getElementById('input-confirm-password');
+    const isPass = inp.type === 'password';
+    inp.type = isPass ? 'text' : 'password';
+    document.getElementById('confirm-pw-eye').setAttribute('data-lucide', isPass ? 'eye-off' : 'eye');
+    lucide.createIcons();
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     const email = document.getElementById('input-email').value;
     if (!email) { showToast('Silakan masukkan email Anda'); return; }
-    if (currentTab === 'signup' && !document.getElementById('terms-check').checked) {
-      showToast('Silakan setujui syarat dan ketentuan'); return;
+    if (currentTab === 'signup') {
+      const password = document.getElementById('input-password').value;
+      const confirmPassword = document.getElementById('input-confirm-password').value;
+      if (!password) { showToast('Silakan masukkan kata sandi'); return; }
+      if (!confirmPassword) { showToast('Silakan konfirmasi kata sandi'); return; }
+      if (password !== confirmPassword) { showToast('Kata sandi tidak cocok'); return; }
+      if (!document.getElementById('terms-check').checked) {
+        showToast('Silakan setujui syarat dan ketentuan'); return;
+      }
     }
     showToast(currentTab === 'signup' ? 'Akun berhasil dibuat! 🎉' : 'Selamat datang kembali! 👋');
   }
@@ -318,5 +326,5 @@
     });
   }
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f0c01825689fcef',t:'MTc3NjkzODI2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f0c049c37cbfcef',t:'MTc3NjkzODM5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
