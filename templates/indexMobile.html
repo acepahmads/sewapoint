@@ -8,7 +8,6 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
     html, body { height: 100%; margin: 0; overflow: hidden; }
@@ -170,35 +169,26 @@
      <div style="display:flex;gap:4px;background:rgba(220, 230, 255, 0.4);border-radius:14px;padding:4px;margin-bottom:22px;">
       <button class="toggle-tab active" id="tab-signin" onclick="switchTab('signin')">Sign In</button> <button class="toggle-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
      </div>
-     <h2 id="card-title" style="font-size:18px;font-weight:800;color:#0d47a1;margin:0 0 16px;letter-spacing:-0.3px;">Create your account</h2>
+     <h2 id="card-title" style="font-size:18px;font-weight:800;color:#0d47a1;margin:0 0 16px;letter-spacing:-0.3px;">Welcome back</h2>
      <form id="auth-form" onsubmit="handleSubmit(event)">
       <!-- Name (signup only) -->
       <div id="name-field" class="input-wrap" style="margin-bottom:10px;display:none;">
-       <input type="text" class="input-field" placeholder="Full Name" id="input-name" autocomplete="name"> <span class="input-icon"><i data-lucide="user" style="width:16px;height:16px;"></i></span>
+       <input type="text" class="input-field" placeholder="Nama Lengkap" id="input-name" autocomplete="name"> <span class="input-icon"><i data-lucide="user" style="width:16px;height:16px;"></i></span>
       </div>
       <div class="input-wrap" style="margin-bottom:10px;">
-       <input type="email" class="input-field" placeholder="Email Address" id="input-email" autocomplete="email"> <span class="input-icon"><i data-lucide="mail" style="width:16px;height:16px;"></i></span>
+       <input type="email" class="input-field" placeholder="Alamat Email" id="input-email" autocomplete="email"> <span class="input-icon"><i data-lucide="mail" style="width:16px;height:16px;"></i></span>
       </div>
       <div class="input-wrap" style="margin-bottom:10px;">
-       <input type="password" class="input-field" placeholder="Password" id="input-password" autocomplete="new-password"> <span class="input-icon"><i data-lucide="lock" style="width:16px;height:16px;"></i></span> <button type="button" class="pw-toggle" onclick="togglePassword()"><i data-lucide="eye" id="pw-eye" style="width:16px;height:16px;"></i></button>
+       <input type="password" class="input-field" placeholder="Kata Sandi" id="input-password" autocomplete="new-password"> <span class="input-icon"><i data-lucide="lock" style="width:16px;height:16px;"></i></span> <button type="button" class="pw-toggle" onclick="togglePassword()"><i data-lucide="eye" id="pw-eye" style="width:16px;height:16px;"></i></button>
       </div><!-- Checkbox (signup only) -->
       <div id="terms-field" style="display:none;align-items:flex-start;gap:8px;margin-bottom:16px;">
-       <input type="checkbox" class="checkbox-custom" id="terms-check"> <label for="terms-check" style="font-size:12px;color:rgba(13, 71, 161, 0.8);line-height:1.4;cursor:pointer;">I agree to the <span style="color:#0d47a1;font-weight:600;">Terms of Service</span> and <span style="color:#0d47a1;font-weight:600;">Privacy Policy</span></label>
+       <input type="checkbox" class="checkbox-custom" id="terms-check"> <label for="terms-check" style="font-size:12px;color:rgba(13, 71, 161, 0.8);line-height:1.4;cursor:pointer;">Saya setuju dengan <span style="color:#0d47a1;font-weight:600;">Syarat Layanan</span> dan <span style="color:#0d47a1;font-weight:600;">Kebijakan Privasi</span></label>
       </div><!-- Forgot (signin only) -->
       <div id="forgot-field" style="display:block;text-align:right;margin-bottom:14px;" class="anim-slide-up">
-       <a href="#" onclick="event.preventDefault();showToast('Reset link sent!')" style="color:#0d47a1;font-size:12px;font-weight:600;text-decoration:none;">Forgot Password?</a>
-      </div><button type="submit" class="btn-primary" id="submit-btn">Sign In</button>
-     </form><!-- Divider -->
-     <div style="display:flex;align-items:center;gap:14px;margin:16px 0;">
-      <div style="flex:1;height:1px;background:rgba(13, 71, 161, 0.2);"></div><span style="font-size:11px;color:rgba(13, 71, 161, 0.5);font-weight:600;">or</span>
-      <div style="flex:1;height:1px;background:rgba(13, 71, 161, 0.2);"></div>
-     </div><!-- Social -->
-     <div style="display:flex;gap:10px;">
-      <div id="google-signin-btn" style="flex: 1;"></div><button class="btn-social" onclick="showToast('Facebook coming soon')" style="flex: 1;">
-       <svg width="16" height="16" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2" />
-       </svg></button>
-     </div><!-- Bottom link -->
-     <p id="bottom-link" style="text-align:center;margin-top:16px;font-size:12px;color:rgba(13, 71, 161, 0.8);">Don't have an account? <a href="#" onclick="event.preventDefault();switchTab('signup')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Sign Up</a></p>
+       <a href="#" onclick="event.preventDefault();showToast('Link reset telah dikirim!')" style="color:#0d47a1;font-size:12px;font-weight:600;text-decoration:none;">Lupa Kata Sandi?</a>
+      </div><button type="submit" class="btn-primary" id="submit-btn">Masuk</button> <!-- Bottom link -->
+      <p id="bottom-link" style="text-align:center;margin-top:16px;font-size:12px;color:rgba(13, 71, 161, 0.8);">Belum punya akun? <a href="#" onclick="event.preventDefault();switchTab('signup')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Daftar</a></p>
+     </form>
     </div>
    </div>
   </div><!-- Toast -->
@@ -210,39 +200,7 @@
 
   let currentTab = 'signin';
 
-  // Initialize Google Sign-In
-  window.onload = function() {
-    google.accounts.id.initialize({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
-      callback: handleGoogleSignIn
-    });
-    google.accounts.id.renderButton(
-      document.getElementById('google-signin-btn'),
-      { 
-        type: 'standard', 
-        size: 'large',
-        theme: 'outline',
-        locale: 'en'
-      }
-    );
-  };
 
-  // Google Sign-In Handler
-  function handleGoogleSignIn(response) {
-    try {
-      const token = response.credential;
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      
-      // Populate email field
-      document.getElementById('input-email').value = payload.email;
-      
-      // Show welcome message
-      showToast(`Welcome ${payload.name}! 🎉`);
-    } catch (error) {
-      console.error('Google sign-in error:', error);
-      showToast('Sign in failed. Please try again.');
-    }
-  }
 
   function switchTab(tab) {
     currentTab = tab;
@@ -257,13 +215,13 @@
     const link = document.getElementById('bottom-link');
 
     if (tab === 'signup') {
-      title.textContent = window.elementSdk?.config?.card_title || 'Create your account';
-      btn.textContent = window.elementSdk?.config?.signup_button_text || 'Sign Up';
-      link.innerHTML = 'Already have an account? <a href="#" onclick="event.preventDefault();switchTab(\'signin\')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Sign In</a>';
+      title.textContent = window.elementSdk?.config?.card_title || 'Buat akun Anda';
+      btn.textContent = window.elementSdk?.config?.signup_button_text || 'Daftar';
+      link.innerHTML = 'Sudah punya akun? <a href="#" onclick="event.preventDefault();switchTab(\'signin\')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Masuk</a>';
     } else {
-      title.textContent = 'Welcome back';
-      btn.textContent = window.elementSdk?.config?.signin_button_text || 'Sign In';
-      link.innerHTML = 'Don\'t have an account? <a href="#" onclick="event.preventDefault();switchTab(\'signup\')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Sign Up</a>';
+      title.textContent = 'Selamat datang kembali';
+      btn.textContent = window.elementSdk?.config?.signin_button_text || 'Masuk';
+      link.innerHTML = 'Belum punya akun? <a href="#" onclick="event.preventDefault();switchTab(\'signup\')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Daftar</a>';
     }
   }
 
@@ -278,11 +236,11 @@
   function handleSubmit(e) {
     e.preventDefault();
     const email = document.getElementById('input-email').value;
-    if (!email) { showToast('Please enter your email'); return; }
+    if (!email) { showToast('Silakan masukkan email Anda'); return; }
     if (currentTab === 'signup' && !document.getElementById('terms-check').checked) {
-      showToast('Please agree to the terms'); return;
+      showToast('Silakan setujui syarat dan ketentuan'); return;
     }
-    showToast(currentTab === 'signup' ? 'Account created! 🎉' : 'Welcome back! 👋');
+    showToast(currentTab === 'signup' ? 'Akun berhasil dibuat! 🎉' : 'Selamat datang kembali! 👋');
   }
 
   function showToast(msg) {
@@ -295,10 +253,10 @@
   // Element SDK
   const defaultConfig = {
     brand_name: 'Cloudia',
-    welcome_text: 'Welcome to',
-    card_title: 'Create your account',
-    signup_button_text: 'Sign Up',
-    signin_button_text: 'Sign In',
+    welcome_text: 'Selamat datang ke',
+    card_title: 'Buat akun Anda',
+    signup_button_text: 'Daftar',
+    signin_button_text: 'Masuk',
     background_color: '#2e1a47',
     surface_color: '#f8fafc',
     text_color: '#1e293b',
@@ -360,5 +318,5 @@
     });
   }
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f0beed4d3d5f8d3',t:'MTc3NjkzNzUwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f0c01825689fcef',t:'MTc3NjkzODI2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
