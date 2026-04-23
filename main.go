@@ -13,7 +13,7 @@ func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*.html")
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(200, "index.html", nil)
+		c.HTML(200, "indexmobile.html", nil)
 	})
 
 	port := os.Getenv("APP_PORT")
