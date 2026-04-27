@@ -15,6 +15,9 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(200, "indexMobile.html", nil)
 	})
+	r.GET("/dashboard", func(c *gin.Context) {
+		c.HTML(200, "dashboard.html", nil)
+	})
 
 	port := os.Getenv("APP_PORT")
 	if port == "" {

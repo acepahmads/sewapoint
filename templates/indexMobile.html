@@ -215,6 +215,10 @@
       title.textContent = 'Selamat datang kembali';
       btn.textContent = window.elementSdk?.config?.signin_button_text || 'Masuk';
       link.innerHTML = 'Belum punya akun? <a href="#" onclick="event.preventDefault();switchTab(\'signup\')" style="color:#0d47a1;font-weight:700;text-decoration:none;">Daftar</a>';
+      //add url dashboard here
+       btn.onclick = function() {
+        window.location.href = '/dashboard';
+       };
     }
   }
 
