@@ -19,7 +19,7 @@ type Config struct {
 
 func LoadConfig() Config {
 	// Load file .env
-	err := godotenv.Load("config/.env")
+	err := godotenv.Load("internal/config/.env")
 	if err != nil {
 		log.Fatalf("Gagal load file .env: %v", err)
 	}
