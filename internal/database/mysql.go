@@ -7,7 +7,7 @@ import (
 	"log"
 	"time"
 
-	"cais/internal/config"
+	"internal/config"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
