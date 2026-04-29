@@ -2,10 +2,10 @@
 package main
 
 import (
-	"internal/config"
 	"log"
 	"net/http"
 	"os"
+	"sewapoint/internal/config"
 	"sewapoint/internal/database"
 
 	"github.com/gin-gonic/gin"
