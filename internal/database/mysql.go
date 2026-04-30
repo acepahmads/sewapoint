@@ -3,7 +3,6 @@ package database
 // internal/database/database.go
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"time"
@@ -11,17 +10,18 @@ import (
 	"sewapoint/internal/config"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
 )
 
-func NewDB(cfg *config.Config) (*sql.DB, error) {
-	var db *sql.DB
+func NewDB(cfg *config.Config) (*sqlx.DB, error) {
+	var db *sqlx.DB
 	var err error
 	for {
 		dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
 			cfg.DBUser, cfg.DBPassword, cfg.DBHost, cfg.DBPort, cfg.DBName,
 		)
 
-		db, err = sql.Open("mysql", dsn)
+		db, err = sqlx.Connect("mysql", dsn)
 		if err != nil {
 			log.Printf("Gagal koneksi ke database: %v", err)
 			sleepDuration := 1 // Detik

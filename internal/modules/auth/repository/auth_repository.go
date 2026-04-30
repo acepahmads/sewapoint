@@ -1,12 +1,15 @@
 // repository/auth_repository.go
 package repository
 
-import (
-	"database/sql"
-)
+import "github.com/jmoiron/sqlx"
 
 type Repository struct {
-	DB *sql.DB
+	DB *sqlx.DB
+}
+
+type userAuth struct {
+	UserID       int64  `db:"id"`
+	PasswordHash string `db:"password_hash"`
 }
 
 // create user
@@ -34,27 +37,32 @@ func (r *Repository) CreateIdentity(userID int64, provider, pid, password string
 
 // find user by email
 func (r *Repository) FindUserByEmail(email string) (int64, string, error) {
-	var userID int64
-	var password string
 
-	err := r.DB.QueryRow(`
+	var ua userAuth
+
+	err := r.DB.Get(&ua, `
 		SELECT u.id, ai.password_hash
 		FROM users u
 		JOIN auth_identities ai ON ai.user_id = u.id
 		WHERE u.email = ? AND ai.provider = 'local'
-	`, email).Scan(&userID, &password)
+	`, email)
 
-	return userID, password, err
+	if err != nil {
+		return 0, "", err
+	}
+
+	return ua.UserID, ua.PasswordHash, nil
 }
 
 // find by provider
 func (r *Repository) FindByProvider(provider, pid string) (int64, error) {
+
 	var userID int64
 
-	err := r.DB.QueryRow(`
+	err := r.DB.Get(&userID, `
 		SELECT user_id FROM auth_identities
 		WHERE provider = ? AND provider_user_id = ?
-	`, provider, pid).Scan(&userID)
+	`, provider, pid)
 
 	return userID, err
 }
