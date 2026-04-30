@@ -5,8 +5,8 @@ import (
 
 	"fmt"
 	"net/http"
+	"sewapoint/internal/utils"
 	"sewapoint/pkg/jwt"
-	"sewapoint/utils"
 	"strings"
 
 	"github.com/gin-gonic/gin"
