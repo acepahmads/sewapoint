@@ -8,10 +8,16 @@ import (
 )
 
 var jwtSecret = []byte("supersecret") // Ganti dengan ENV di production
+var secretKey = []byte("supersecretkey")
 
 type Claims struct {
 	UserID string `json:"userID"`
 	Email  string `json:"email"`
+	jwt.RegisteredClaims
+}
+
+type Claims1 struct {
+	UserID int `json:"user_id"`
 	jwt.RegisteredClaims
 }
 
@@ -71,6 +77,41 @@ func ValidateJWT(tokenString string) (*Claims, error) {
 		// fmt.Println("tidak valid", token.Valid, claims.ExpiresAt, time.Now())
 		// if !ok || !token.Valid || time.Unix(claims.ExpiresAt, 0).Before(time.Now()) {
 		return nil, errors.New("token tidak valid atau kadaluarsa")
+	}
+
+	return claims, nil
+}
+
+// Generate Token
+func GenerateToken(userID int) (string, error) {
+
+	claims := Claims1{
+		UserID: userID,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	return token.SignedString(secretKey)
+}
+
+// Validate Token
+func ValidateToken(tokenString string) (*Claims, error) {
+
+	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+		return secretKey, nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(*Claims)
+	if !ok || !token.Valid {
+		return nil, err
 	}
 
 	return claims, nil
