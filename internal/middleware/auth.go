@@ -5,8 +5,8 @@ import (
 
 	"fmt"
 	"net/http"
-	"sewapoint/internal/pkg"
 	"sewapoint/internal/utils"
+	"sewapoint/pkg/jwt"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -24,7 +24,7 @@ func JWTAuth() gin.HandlerFunc {
 		}
 
 		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
-		claims, err := pkg.ValidateJWT(tokenString)
+		claims, err := jwt.ValidateJWT(tokenString)
 		if err != nil {
 			c.Redirect(http.StatusFound, "/")
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
