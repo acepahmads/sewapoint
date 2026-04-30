@@ -5,7 +5,6 @@ import (
 
 	"fmt"
 	"net/http"
-	"sewapoint/internal/utils"
 	"sewapoint/pkg/jwt"
 	"strings"
 
