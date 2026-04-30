@@ -8,6 +8,9 @@ import (
 	"sewapoint/internal/config"
 	"sewapoint/internal/database"
 	"sewapoint/internal/middleware"
+	"sewapoint/internal/modules/auth/handler"
+	"sewapoint/internal/modules/auth/repository"
+	"sewapoint/internal/modules/auth/usecase"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -33,6 +36,19 @@ func main() {
 	r.GET("/dashboard", func(c *gin.Context) {
 		c.HTML(200, "dashboard.html", nil)
 	})
+
+	repo := &repository.Repository{DB: db}
+	uc := &usecase.Usecase{Repo: repo}
+	handler := &handler.Handler{Usecase: uc}
+
+	api := r.Group("/api/v1")
+
+	auth := api.Group("/auth")
+	{
+		auth.POST("/register", handler.Register)
+		auth.POST("/login", handler.Login)
+		auth.POST("/social", handler.Social)
+	}
 
 	port := os.Getenv("APP_PORT")
 	if port == "" {
